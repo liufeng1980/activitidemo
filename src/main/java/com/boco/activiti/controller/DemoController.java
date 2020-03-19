@@ -91,5 +91,14 @@ public class DemoController {
         return "高路公司审核";
     }
 
-
+    /**
+     * 4.分公司审核
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/fenZhongXinAudit")
+    public String fenZhongXinAudit(){
+        callFlowService.fenZhongXinAudit();
+        return "高路公司审核";
+    }
 }

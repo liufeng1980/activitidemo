@@ -173,4 +173,34 @@ public class CallFlowService {
             }
         }
     }
+
+    /**
+     * 4.分公司审核
+     * @return
+     */
+    public void fenZhongXinAudit() {
+        List<Task> tasks = taskService.createTaskQuery()
+                .processDefinitionKey(CALL_FLOW_PROCESS_NAME)
+                .taskCandidateGroup("diyifengongsi").list();
+        if(tasks == null){
+            LOGGER.info("未查询到分公司审核任务");
+            return;
+        }
+        for (Task task:tasks){
+            try {
+                taskService.claim(task.getId(),"zhaoliu");
+                Map<String,Object> map = new HashMap<>();
+                ProcessAuditResult result = new ProcessAuditResult();
+                result.setContineProcessCode(0);
+                map.put("result",result);
+                map.put("gaolu","diyigaolu");
+                //taskService.setVariable(task.getId(),"result",1);
+                taskService.complete(task.getId(),map);
+                LOGGER.info("分公司审核");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
