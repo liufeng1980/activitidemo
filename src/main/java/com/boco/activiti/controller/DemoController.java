@@ -44,7 +44,7 @@ public class DemoController {
     @RequestMapping("/deploy")
     public String deploy(){
         callFlowService.deploy();
-        return "deploy";
+        return "流程部署";
     }
 
     @ResponseBody
@@ -64,7 +64,7 @@ public class DemoController {
     @RequestMapping("/submitBill")
     public String submitBill(){
         callFlowService.submitBill();
-        return "";
+        return "呼叫中心提交订单";
     }
 
 
@@ -77,7 +77,7 @@ public class DemoController {
     @RequestMapping("/YunYingKeAudit")
     public String YunYingKeAudit(){
         callFlowService.YunYingKeAudit();
-        return "";
+        return "运营科审核";
     }
 
     /**
@@ -88,7 +88,7 @@ public class DemoController {
     @RequestMapping("/gaoLuAudit")
     public String gaoLuAudit(){
         callFlowService.gaoLuAudit();
-        return "";
+        return "高路公司审核";
     }
 
 
