@@ -17,9 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class DemoController {
@@ -34,21 +31,21 @@ public class DemoController {
     CallFlowService callFlowService;
 
     @ResponseBody
-    @RequestMapping("/init")
+    @RequestMapping(value = "/init", produces = "text/html; charset=utf-8")
     public String init(){
         LOGGER.info("start.....................");
-        return "init";
+        return "测试";
     }
 
     @ResponseBody
-    @RequestMapping("/deploy")
+    @RequestMapping(value = "/deploy", produces = "text/html; charset=utf-8")
     public String deploy(){
         callFlowService.deploy();
         return "流程部署";
     }
 
     @ResponseBody
-    @RequestMapping("/startProcessInstance")
+    @RequestMapping(value = "/startProcessInstance", produces = "text/html; charset=utf-8")
     @Transactional(value = "transactionManager",rollbackFor = Exception.class)
     public String startProcessInstance(){
         //runtimeService.start
@@ -61,7 +58,7 @@ public class DemoController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/submitBill")
+    @RequestMapping(value = "/submitBill", produces = "text/html; charset=utf-8")
     public String submitBill(){
         callFlowService.submitBill();
         return "呼叫中心提交订单";
